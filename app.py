@@ -10,6 +10,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route('/city')
+def index_city():
+    return render_template("index_plain.html")
+
 # Route for "/MIX" (middleware):
 @app.route('/MIX', methods=["POST"])
 def POST_location():
