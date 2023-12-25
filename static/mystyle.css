@@ -40,3 +40,10 @@
     background-color: #04AA6D;
     color: white;
 }
+
+/* <div class="topnav">
+      <a href="http://127.0.0.1:5000">Home</a>
+      <a class="active" href="http://127.0.0.1:5000/city">City</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+</div> */

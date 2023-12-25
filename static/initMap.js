@@ -21,5 +21,18 @@ function addMarker() {
     //console.log(latitude + ", " + longitude);
 }
 
+function addMarkerCity(latitude, longitude) {
+  var latitude = parseFloat(latitude);
+  var longitude = parseFloat(longitude);
+  var lonLat = new OpenLayers.LonLat(longitude, latitude)
+    .transform(
+      new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+      map.getProjectionObject() // to Spherical Mercator Projection
+    );
+  var point = new OpenLayers.Marker(lonLat);
+  markers.addMarker(point);
+  map.setCenter(lonLat, 8); // second arg is zoom level
+}
+
 // load and setup map layers
 initMap();

@@ -12,7 +12,7 @@ def index():
 
 @app.route('/city')
 def index_city():
-    return render_template("index_plain.html")
+    return render_template("index_city.html")
 
 # Route for "/MIX" (middleware):
 @app.route('/MIX', methods=["POST"])
@@ -39,6 +39,25 @@ def POST_location():
     if "error" in r:
         return jsonify (
             errorMessage = 'Invalid geographical location!'
+        )
+    js = json.dumps(r[0])
+    js = json.loads(js)
+
+    return js, 200
+
+
+@app.route('/City', methods=["POST"])
+def POST_city():
+    location = request.form["location"]
+
+    ninjas_key = os.getenv("NINJAS_KEY")
+    city_url = os.getenv("CITY_URL")
+    city_url = f'{city_url}{location}'
+    r = requests.get(city_url, headers={'X-Api-Key': ninjas_key}).json()
+    print(r)
+    if r == []:
+        return jsonify (
+            errorMessage = 'Invalid city!'
         )
     js = json.dumps(r[0])
     js = json.loads(js)
